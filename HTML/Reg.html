@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<title>Sign Up</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/uber-brands.ico"/>
+	<!--===============================================================================================-->
+	
+	<link rel="stylesheet" type="text/css" href="css/Reg.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+
+	</head>
+
+	<body>
+
+		<div class="Form-reg">
+			
+			<div class="Sign-Up">
+				
+
+			<!--===============================================================================================-->
+				<form action="Reg.php" method="POST">
+					
+					
+					<input type="text" name="Uname" id="button" placeholder="Enter Username" required autocomplete="off" data-validate="username required"><br>
+					<br>
+					
+					<input type="text" name="fname" id="button" placeholder="Enter your First Name" required autocomplete="off" data-validate="First Name required"><br>
+					<br>
+					
+					<input type="text" name="lname" id="button" placeholder="Enter your Last Name" required autocomplete="off" data-validate="Last Name required"><br>
+					<br>
+					
+					<input type="email" name="email" id="button" placeholder="Enter your E-mail Address" required autocomplete="off" data-validate="E-mail Address required"><br>
+					<br>
+					
+					<input type="password" name="password" id="button" placeholder="Enter Password" autocomplete="new-password" required ><br>
+					<br>
+					
+					<input type="password" name="passwordConf" id="button" placeholder="Confirm Password" autocomplete="new-password" required><br>
+					<br>
+					<!--===============================================================================================-->
+					
+					<select class="num"><option>+27</option></select>
+					<input type="number" name="cellNo" id="phone" maxlength="9" placeholder="Enter your Mobile Number" required autocomplete="off" data-validate="Phone Number required"><br>
+					<br>
+					<!--===============================================================================================-->
+					<input type="radio" name="gender" id="Genn1" <?php if (isset($gender) && $gender=="male")?>><span id="Txt1" value="male">Male</span><input type="radio" name="gender" id="Genn2" <?php if (isset($gender) && $gender=="female")?>><span id="Txt2" value="female">Female</span>
+					<!--===============================================================================================-->
+					<br>
+					<br>
+					<input type="submit" name="submit" value="Sign Up" id="butt">
+
+				</form>
+
+			<!--=========================================================================================-->
+					<?php include_once 'Reg.php' ?>
+			<!--=========================================================================================-->
+			</div>
+			
+		</div>
+
+	</body>
+</html>

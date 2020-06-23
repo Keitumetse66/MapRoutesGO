@@ -1,0 +1,251 @@
+<!DOCTYPE>
+<html>
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewpoint" content="width=device-width">
+		<meta name="description" content="Modified Uber | Affordable Uber rides">
+		<meta name="keyword" content="Uber, Affordable Uber rides, Cheap Uber rides, cab">
+		<meta name="author" content="Keitumetse Molefe & CO">
+		
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		
+		<title> Uber | Home</title>
+
+		
+		
+		<style type="text/css">
+			a.nounderline{text-decoration: none; color: #ffffff; }
+
+
+			h3,p.changecolr{ color: #262626; text-decoration: none; }
+			h1.letspace{letter-spacing: 3.5px}
+
+			#map{
+				height: 400px;
+				width: 87%;
+				margin-top: -495px;
+				float: right;
+				padding-right:  10px;
+				margin-right: 1.5px;
+				margin-left: 50px;
+				padding-left: 50px;
+				margin-bottom: -50px;
+
+
+
+			}
+			#estimation{
+				position: absolute;
+				padding-left: 10px;
+				margin-top: 4px;
+				
+			}
+			#submit{
+
+				margin-left: 50px;
+				margin-top: 10px;
+			}
+
+			#directions-panel{
+
+				margin-top: 144px;
+		        background-color: #FFEE77;
+		        padding-right: 305px;
+		        overflow: scroll;
+		        height: 174px;
+		        position: static;
+				margin-left: 10px;
+				float: left;
+			}
+			#right-panel select {
+       		 width: 100%;
+       		 height: 10px;
+    		}
+			.btn btn-primary {
+				
+			}
+			#waypoints {
+				width: 100%;
+				height: 30px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+
+			}
+			
+		</style>
+
+	</head>
+
+	<body>
+
+		<header>
+			<div class="container">
+				<div id="logo">
+					<h1 class="letspace">UBER G-RiDES</h1>
+				</div>
+
+				<nav>
+					<ul>
+						<li><a href="index.html" class="nounderline">Home</a></li>
+						<li><a href="../Login_v5/index-log.php" class="nounderline">Riders</a></li>
+						<li><a href="#" class="nounderline">Drivers</a></li>
+						<li><a href="About.html" class="nounderline">About</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+
+		<section id="Showcase">
+			<div class="container">
+				<h1 class="nounderline">Affordable Luxurious Uber Rides</h1>
+				<p class="nounderline"> Tired of waiting in a queue for a taxi to take you where you want? Or are you tired of paying too much money fo a single trip? Well, say no more... Uber G-Rides offers you the best comfortable and luxurious classy rides at a pocket frendly price with just a click of a button. Cool right? We got you ;)</p>
+			</div>
+		</section>
+
+		<section id="Estimates">
+			<div class="containers">
+
+					<!--Calculations-->
+					
+					<div id="estimation">
+					<form>
+					
+						<div id="estim">
+							
+							<b>Start:</b>
+								<input type="text" name="initialpoint" id="start">
+								<br>
+								<select multiple id="waypoints">
+									<option value="chicago, il">Gauteng</option>
+								</select>
+
+								<br>
+								<b>End:</b>
+								<input type="text" name="destination" id="end">
+								
+								<br>
+						</div>
+						<a class="btn btn-primary" href="maps.html" role="button">Estimates</a>
+						
+						  
+					    </div>
+					    <div id="directions-panel"></div>
+						
+					    </div>
+					</form>
+					<!--Map-->
+					
+					<div id="map"></div>
+							<script type="text/javascript">
+											
+								function initMap() {
+							        var directionsService = new google.maps.DirectionsService;
+							        var directionsDisplay = new google.maps.DirectionsRenderer;
+							        var map = new google.maps.Map(document.getElementById('map'), {
+							          zoom: 10,
+							          center: {lat:-25.5864, lng:27.9876}
+
+							        });
+							        directionsDisplay.setMap(map);
+									
+							        document.getElementById('submit').addEventListener('click', function() {
+							          calculateAndDisplayRoute(directionsService, directionsDisplay);
+							        
+									});
+									
+								}
+							    
+								
+							    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+							        var waypts = [];
+							        var checkboxArray = document.getElementById('waypoints');
+							        for (var i = 0; i < checkboxArray.length; i++) {
+							          if (checkboxArray.options[i].selected) {
+								            waypts.push({
+								              location: checkboxArray[i].value,
+								              stopover: true
+								            });
+							            }
+							        }
+
+							        directionsService.route({
+							          origin: document.getElementById('start').value,
+							          destination: document.getElementById('end').value,
+							          //waypoints: waypts,
+							          //optimizeWaypoints: true,
+							          travelMode: 'DRIVING'
+							        }, function(response, status) {
+							          if (status === 'OK') {
+								            directionsDisplay.setDirections(response);
+								            var route = response.routes[0];
+								            
+								            var summaryPanel = document.getElementById('directions-panel');
+								            summaryPanel.innerHTML = '';
+								            // For each route, display summary information.
+								            for (var i = 0; i < route.legs.length; i++) {
+								              var routeSegment = i + 1;
+								              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+								                  '</b><br>';
+								              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+								              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+								              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+								             var distance = route.legs[i].distance.value;
+								              summaryPanel.innerHTML += 'Uber Light = R ' + Math.round(distance / 1000 * 0.5) + '<br>';
+								              summaryPanel.innerHTML += 'Uber Classy Darkie = R ' + Math.round(distance / 1000 * 1.5) + '<br>';
+								              summaryPanel.innerHTML += 'Uber Xtra G = R ' + Math.round(distance / 1000 * 5.5) + '<br>';
+								              
+								            }
+
+
+								        } else {
+								            window.alert('Directions request failed due to ' + status);
+								        }
+							        });
+							      }
+								
+							</script>
+
+				
+			</div>
+		</section>
+		<section id="boxes">
+			<div class="container">
+				<div id="box">
+					<img src="images/smartphone.png" class="pic">
+					<h3 class="changecolr">Easiest way around</h3>
+					<p class="changecolr">One tap and a car comes directly to you. Hop in—your driver knows exactly where to go. And when you get there, just step out. Payment is completely seamless.</p>
+
+				</div>
+				<div id="box">
+					<img src="images/placeholder.png" class="pic">
+					<h3 class="changecolr">Anywhere, anytime</h3>
+					<p class="changecolr">Daily commute. Errand across town. Early morning flight. Late night drinks. Wherever you’re headed, count on Uber for a ride—no reservations required.</p>
+
+				</div>
+				<div id="box">
+					<img src="images/car.png" class="pic">
+					<h3 class="changecolr">Low-cost, luxury experience</h3>
+					<p class="changecolr">Etiam in ligula dolor. In tincidunt ac lacus nec imperdiet. Aenean id magna imperdiet, bibendum dui sed, auctor dui. Curabitur eleifend fringilla dolor.</p>
+
+				</div>
+			</div>
+		</section>
+		
+		<script async defer
+		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPxlfn7bnrsL1slT4at5_H6f6T50AAL14&callback=initMap">
+		</script>
+			<script src="domMain.js"></script>
+		<footer>
+			<p>Uber G-rides, copyrights &copy; 2018</p>
+
+		</footer>
+
+		
+	</body>
+
+
+
+
+</html>

@@ -1,0 +1,33 @@
+body, html{
+  background: url(../images/UberSignUp.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 700px;
+  font-family; "Helvertica Neue", sans-serif;
+}
+
+
+
+.Form-reg{
+	text-align: center;
+	margin: 100px 0px;
+
+
+}
+
+.Sign-Up{
+	    width: 700px;
+    background-color: #000000;
+    opacity: 0.7;
+    padding: 20px 55px;
+    margin-left: 700px;
+    height: 450px;
+}
+
+#button{
+	border-radius: 5px;
+    width: 250px;
+    padding: 10px;
+    outline: 1px;
+}

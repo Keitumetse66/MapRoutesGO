@@ -1,0 +1,216 @@
+<!DOCTYPE>
+<html>
+	<head>
+		
+		<P1> UBER</P1>
+
+
+	</head>
+	<body>
+
+
+	</body>
+
+
+</html>
+
+
+
+function initMap() {}
+
+ $(() => {
+ 	initMap = function() {
+ 	 google.maps.visualRefresh = true;
+
+	var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: { lat: -25.731340, lng: 28.218370 }
+}
+      
+  });
+
+  var directionsService = new google.maps.DirectionsService();
+
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+    map: map
+  });
+
+  var geocoder = new google.maps.Geocoder();
+
+  var pointA, pointB;
+
+
+  geocoder.geocode({
+    'address': document.getElementById('addressFrom').value
+  }, function(results, status) {
+    if (status != "OK") return;
+    var location = results[0].geometry.location;
+    pointA = new google.maps.LatLng(location.lat(), location.lng());
+    alert(location.lat() + ',' + location.lng());
+    var markerA = new google.maps.Marker({
+      position: pointA,
+      title: "point A",
+      label: "A",
+      map: map
+    });
+    geocoder.geocode({
+      'address': document.getElementById('addressTo').value
+    }, function(results, status) {
+      if (status != "OK") return;
+      var location = results[0].geometry.location;
+      pointB = new google.maps.LatLng(location.lat(), location.lng());
+      alert(location.lat() + ',' + location.lng());
+      var markerB = new google.maps.Marker({
+        position: pointB,
+        title: "point B",
+        label: "B",
+        map: map
+      });
+      calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+    });
+  });
+};
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+  directionsService.route({
+    origin: pointA,
+    destination: pointB,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) 
+                          {
+    if (status == google.maps.DirectionsStatus.OK)
+    {
+      directionsDisplay.setDirections(response);
+    } else
+    {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+
+
+
+ 
+
+
+}
+
+
+
+
+
+
+<?php
+session_start();
+$_SESSION[ 'message'] = '';
+$_mysqli = new mysqli('localhost', 'root', '', 'uber_g-rides');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  //Passwords are matching
+  if($_POST['password'] == $_POST['passwordConf']){
+
+      $username = $mysqli->real_escape_string($_POST['username']);
+      $fname = $mysqli->real_escape_string($_POST['fname']);
+      $lname = $mysqli->real_escape_string($_POST['lname']);
+      $email = $mysqli->real_escape_string($_POST['email']);
+      $password = md5($_POST['password']); //md5 password security encryption
+
+      $_SESSION['username'];
+
+      $sql = "INSERT INTO uber_riders (username, f_name, l_name, email_address, password) "
+
+        . "VALUES ('$username', '$fname', '$lname', '$email', '$password')";
+
+        //if query is successful redirect to main page
+
+        if ($mysqli->query($sql)=== true) {
+          # code...
+
+          $_SESSION['message'] = "Registration successful added $username to the database!";
+          header("location: Uber.html");
+
+        }
+        else{
+
+          $_SESSION['message'] = "Error, User could not be added to the database";
+        }
+
+  }
+  else{
+    $_SESSION['message'] = "Passwords did not match";
+  }
+
+}
+
+
+?>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <title>Sign Up</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/uber-brands.ico"/>
+  <!--===============================================================================================-->
+  
+  <link rel="stylesheet" type="text/css" href="css/Reg.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+
+  </head>
+
+  <body>
+
+    <div class="Form-reg">
+      
+      <div class="Sign-Up">
+        
+
+      <!--===============================================================================================-->
+        <form action="Reg.html" method="post">
+          <td>username</td>
+          <input type="text" name="username" id="button" placeholder="Enter Username" required><br>
+          <br>
+          <td>first name</td>
+          <input type="text" name="fname" id="button" placeholder="Enter your First Name" required><br>
+          <br>
+          <td>last name</td>
+          <input type="text" name="lname" id="button" placeholder="Enter your Last Name" required><br>
+          <br>
+          <td>email address</td>
+          <input type="email" name="email" id="button" placeholder="Enter your E-mail Address" required><br>
+          <br>
+          <td>password</td>
+          <input type="password" name="password" id="button" placeholder="Enter Password" autocomplete="new-password" required><br>
+          <br>
+          <td>confirm password</td>
+          <input type="password" name="passwordConf" id="button" placeholder="Confirm Password" autocomplete="new-password" required><br>
+          <br>
+          <!--===============================================================================================-->
+          <select class="num"><option>+27</option></select>
+          <input type="number" name="cellNo" id="phone" maxlength="9" placeholder="Enter your Mobile Number" required><br>
+          <br>
+          <!--===============================================================================================-->
+          <input type="radio" name="gender" id="Genn1"><span id="Txt1">Male</span><input type="radio" name="gender" id="Genn2"><span id="Txt2">Female</span>
+          <!--===============================================================================================-->
+          <br>
+          <br>
+          <input type="submit" value="Sign Up" id="butt">
+        </form>
+      <!--===============================================================================================-->
+      </div>
+      
+    </div>
+
+  </body>
+</html>

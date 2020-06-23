@@ -1,0 +1,19 @@
+<link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="form.css" type="text/css">
+<div class="body-content">
+  <div class="module">
+    <h1>Create an account</h1>
+    <form class="form" action="drivers.php" method="post" enctype="multipart/form-data" autocomplete="off">
+      <div class="alert alert-error"></div>
+      <input type="text" placeholder="First Name" name="f-name" required />
+      <input type="text" placeholder="Last Name" name="l-name" required />
+      <input type="date" placeholder="Date of Birth" name="dob" required />
+      <input type="email" placeholder="Email" name="email" required />
+      <input type="password" placeholder="Password" name="password" autocomplete="new-password" required />
+      <input type="number" placeholder="Phone Number" name="phone" autocomplete="off" required />
+      <div class="avatar"><label>Upload your photo: </label><input type="file" name="avatar" accept="image/*" required /></div>
+      <div class="avatar"><label>Upload your drivers permit: </label><input type="file" name="permit" accept="document/*" required /></div>
+      <input type="submit" value="Register" name="register" class="btn btn-block btn-primary" />
+    </form>
+  </div>
+</div>

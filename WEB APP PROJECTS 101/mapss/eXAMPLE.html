@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<title>Geocode App</title>
+
+</head>
+<body>
+
+	<div class="container">
+		<div id="formatted-address"></div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		//call geocode
+
+		geocode();
+		function geocode(){
+			var location = "579 Phalatse st Zone 1 Ga-Rankuwa ";
+
+			axios.get('https://maps.googleapis.com/maps/api/geocode/json', { 
+
+				params:{
+					address:location, 
+
+					key:"AIzaSyBPxlfn7bnrsL1slT4at5_H6f6T50AAL14"
+				}
+			})
+
+			.then(function(response){
+				//	Log full response
+				console.log(response)
+
+				// formatted address
+				var formattedAddress = response.data.results[0].formatted_address;
+				var formattedAddressOutput = `
+					<ul class="list group">
+						<li class="list group-item">${formattedAddress}</li>
+
+					</ul>
+
+				`;
+
+
+				//Address components
+
+				var addressComponents = response.data.results[0].addressComponents;
+				//Output to app
+				document.getElementById('formatted-address').innerHTML= formattedAddressOutput;
+
+			}) 
+			.catch(function(error){
+
+				console.log(error);
+			});
+		}
+
+
+	</script>
+
+</body>
+</html>

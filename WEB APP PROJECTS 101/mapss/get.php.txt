@@ -1,0 +1,12 @@
+<b>Start:</b>
+								<input type="text" name="initialpoint" id="start">
+								<br>
+								<select multiple id="waypoints">
+									<option value="chicago, il">Gauteng</option>
+								</select>
+
+								<br>
+								<b>End:</b>
+								<input type="text" name="destination" id="end">
+							
+								<br>

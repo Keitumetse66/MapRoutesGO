@@ -1,0 +1,127 @@
+body{
+	background: url(../images/UberSignUp.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover ;
+  font-family; "Helvertica Neue", sans-serif;
+
+}
+
+.Form-reg{
+	text-align: center;
+  width: 100px 0px;
+	margin: 0 auto;
+
+}
+
+.Sign-Up{
+	  width: 680px;
+    background-color: #000000;
+    opacity: 0.9;
+    position: relative;
+    border-radius: 10px;
+    margin: auto;
+
+}
+
+#button{
+	border-radius: 10px;
+    width: 500px;
+    padding: 20px;
+    outline: 1px;
+    margin-top: 45px;
+    margin-bottom: -0px;
+    margin-right: 7px;
+    margin-left: 5px;
+
+}
+
+.num{
+   border-radius: 10px;
+    width: 81px;
+    padding: 17px;
+    outline: 1px;
+    margin-left: 8px;
+    margin-right: 5px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+#phone{
+  border-radius: 10px;
+    width: 410px;
+    padding: 20px;
+    outline: 1px;
+    margin-right: 7px;
+    margin-left: 5px;
+}
+
+#Txt1{
+  color: #ffffff;
+    margin-left: 3px;
+    margin-right: 40px;
+}
+
+#Txt2{
+  color: #ffffff;
+
+}
+
+#Genn1{
+  margin-left: 1px;
+    margin-right: 0px;
+}
+
+#Genn2{
+ margin-left: 1px;
+    margin-right: 5px;
+}
+
+#butt{
+  border-radius: 10px;
+    width: 560px;
+    padding: 20px;
+    outline: 1px;
+    text-decoration-color: black;
+    color: #FAEBD7;
+    background-color: #333333;
+    margin-top: 42px;
+    display: initial;
+    flex-wrap: unset;
+    flex-direction: row;
+    text-align: center;
+   /* margin-bottom: 20px;*/
+    font-family: Poppins-Regular;
+    
+    
+}
+
+
+.td{
+
+  font-family: Poppins-Regular;
+}
+
+/* Media Queries */
+
+@Media(max-width: 768px){
+
+  .Sign-Up{
+
+      padding-left: 60px;
+      padding-right: 60px;
+
+  }
+
+}
+
+@Media(max-width: 576px){
+
+  .Sign-Up{
+
+      padding-left: 15px;
+      padding-right: 15px;
+
+  }
+}

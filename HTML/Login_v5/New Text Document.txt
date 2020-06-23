@@ -1,0 +1,48 @@
+#butt {
+    border-radius: 10px;
+    width: 560px;
+    padding: 20px;
+    outline: 1px;
+    text-decoration-color: black;
+    color: #FAEBD7;
+    background-color: #333333;
+    margin-top: 45px;
+    display: initial;
+    flex-wrap: unset;
+    flex-direction: row;
+    text-align: center;
+}
+
+
+
+
+#button {
+    border-radius: 10px;
+    width: 500px;
+    padding: 20px;
+    outline: 1px;
+    margin-top: 45px;
+    margin-bottom: -0px;
+}
+
+
+
+.num {
+    border-radius: 10px;
+    width: 70px;
+    padding: 8px;
+    outline: 1px;
+    margin-left: 8px;
+    margin-right: 5px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+#phone {
+    border-radius: 10px;
+    width: 440px;
+    padding: 20px;
+    outline: 1px;
+    margin-right: 7px;
+    margin-left: 5px;
+}
